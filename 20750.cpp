@@ -1,13 +1,12 @@
 #include <iostream>
 #include <algorithm>
 using namespace std;
-const int BOARDSIZE=8;
 int Perm[] = {1, 2, 3, 4, 5, 6, 7, 8};
 
 // check diagonal conflicts
 bool no_conflict() {
-    bool diagA[BOARDSIZE*2] = {false}, diagB[BOARDSIZE*2] = {false};
-    for (int c=0; c<BOARDSIZE; c++) {
+    bool diagA[16] = {false}, diagB[16] = {false};
+    for (int c=0; c<8; c++) {
         int r = Perm[c];
         if (diagA[r + c])
             return false;
@@ -26,10 +25,10 @@ int main() {
         if (Perm[c-1] != r)
             continue;
         if (no_conflict()) {
-            for (int i=0; i<BOARDSIZE; i++)
+            for (int i=0; i<8; i++)
                 cout << Perm[i] << " ";
             cout << endl;          
         }
-    } while (next_permutation(Perm, Perm+BOARDSIZE));
+    } while (next_permutation(Perm, Perm+8));
     return 0;
 }
